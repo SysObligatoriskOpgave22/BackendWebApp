@@ -26,7 +26,5 @@ public class DummyCardConfiguration implements ApplicationRunner {
         }
 
         System.out.println(deck);
-
-        Pao
     }
 }
