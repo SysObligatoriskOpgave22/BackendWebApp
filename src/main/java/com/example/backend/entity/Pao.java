@@ -2,10 +2,8 @@ package com.example.backend.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +19,9 @@ public class Pao {
     private String person;
     private String action;
     private String object;
+
+    @OneToOne(mappedBy = "pao", fetch = FetchType.LAZY)
+    private PaoCard paoCard;
 
 
     public Pao(String imageUrl, String person, String action, String object) {
