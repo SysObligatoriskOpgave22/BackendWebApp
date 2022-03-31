@@ -3,7 +3,6 @@ package com.example.backend.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,7 +19,8 @@ public class Pao {
     private String action;
     private String object;
 
-    @OneToOne(mappedBy = "pao", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
     private PaoCard paoCard;
 
 

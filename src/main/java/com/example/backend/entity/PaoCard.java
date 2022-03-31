@@ -21,7 +21,7 @@ public class PaoCard {
     @ToString.Exclude
     private Card card;
 
-    @OneToOne(mappedBy = "paoCard", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Pao pao;
 
