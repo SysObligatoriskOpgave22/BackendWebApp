@@ -5,10 +5,12 @@ import com.example.backend.entity.Rank;
 import com.example.backend.entity.Suit;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class DummyCardConfiguration implements ApplicationRunner {
 
     @Override
