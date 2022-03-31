@@ -2,10 +2,7 @@ package com.example.backend.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -21,6 +18,10 @@ public class Pao {
     private String person;
     private String action;
     private String object;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private PaoCard paoCard;
 
 
     public Pao(String imageUrl, String person, String action, String object) {
