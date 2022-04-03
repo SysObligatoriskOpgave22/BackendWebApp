@@ -15,6 +15,7 @@ public class CardService {
 
     public CardService(){}
 
+    //Shuffles the defaultDeck
     public List<CardResponse> shuffledDeck(){
        List<PaoCard> deckToShuffle = DeckFromTsv.createDefaultDeck();
        Collections.shuffle(deckToShuffle);

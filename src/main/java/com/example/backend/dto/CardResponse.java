@@ -4,7 +4,6 @@ import com.example.backend.entity.PaoCard;
 import com.example.backend.entity.Rank;
 import com.example.backend.entity.Suit;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @NoArgsConstructor
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardResponse {
     private Rank rank;
