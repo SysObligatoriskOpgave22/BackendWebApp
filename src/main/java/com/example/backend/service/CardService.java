@@ -21,4 +21,19 @@ public class CardService {
        Collections.shuffle(deckToShuffle);
        return CardResponse.CardFromEntity(deckToShuffle);
     }
+
+    //Returns the defaultDeck in a list of CardResponses
+    public List<CardResponse> getDefaultDeck(){
+        List<PaoCard> defaultDeck = DeckFromTsv.createDefaultDeck();
+        return CardResponse.CardFromEntity(defaultDeck);
+    }
+
+    //Get a card from the defaultDeck using an ID
+    public CardResponse getCard(int id){
+        List<CardResponse> deck = getDefaultDeck();
+        System.out.println(deck.toString());
+        System.out.println(deck.get(id).toString());
+        return deck.get(id);
+    }
+
 }

@@ -4,6 +4,7 @@ import com.example.backend.dto.CardResponse;
 import com.example.backend.entity.PaoCard;
 import com.example.backend.service.CardService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,24 +20,22 @@ public class CardController {
     public CardController(CardService cardservice) {
         this.cardService = cardservice;
     }
-    /*
+
+    //Gets defaultDeck in order
     @GetMapping()
-    public List<Card> getCards() {
-        return cardService.getcards;
+    public List<CardResponse> getCards() {
+        return cardService.getDefaultDeck();
     }
 
-     */
-
+    //Gets defaultDeck shuffled
     @GetMapping("/random")
     public List<CardResponse> getCardsRandomized() {
         return cardService.shuffledDeck();
     }
-/*
+
+    //Get a card from its ID
     @GetMapping("/{id}")
-    public Card getCard(@PathVariable String id) {
-        return cardService.getCard;
+    public CardResponse getCard(@PathVariable int id) {
+        return cardService.getCard(id);
     }
-
- */
-
 }
