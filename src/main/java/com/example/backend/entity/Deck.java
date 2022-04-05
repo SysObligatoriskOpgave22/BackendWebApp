@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Deck {
 
     @Id
-    private int id;
+    private Long id;
     private String name;
     private String description;
 
@@ -21,7 +21,7 @@ public class Deck {
 
     }
     //Constructor
-    public Deck(int id, String name, String description){
+    public Deck(Long id, String name, String description){
         this.id = id;
         this.name = name;
         this.description = description;
