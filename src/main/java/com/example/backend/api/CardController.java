@@ -3,15 +3,13 @@ package com.example.backend.api;
 import com.example.backend.dto.CardResponse;
 import com.example.backend.entity.PaoCard;
 import com.example.backend.service.CardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/cards")
+@CrossOrigin
 public class CardController {
     // import and remove comment tags when missing classes are implemented
     //
