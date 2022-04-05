@@ -42,12 +42,17 @@ class CardServiceTest {
         assertNotEquals(deck1, deck2);
     }
 
-    //this fails for some reason, even though the test reports that the contents are identical
     @Test
     void getDefaultDeck_defaultDecksAreEqual() {
         List<CardResponse> deck1 = cut.getDefaultDeck();
         List<CardResponse> deck2 = cut.getDefaultDeck();
-        //assertEquals(deck1, deck2); //commented out for now due to weird fail
+        boolean decksEqual = false;
+        for(int i=0; i<deck1.size(); i++) {
+            if(deck1.indexOf(i) == deck2.indexOf(i)) {
+                decksEqual = true;
+            } else decksEqual = false;
+        }
+        assertTrue(decksEqual);
     }
 
     //test that the deck holds 13 of each suit
