@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("/api/cards")
 @CrossOrigin
 public class CardController {
     // import and remove comment tags when missing classes are implemented
