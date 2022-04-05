@@ -24,7 +24,7 @@ public class Pao {
     private PaoCard paoCard;
 
 
-    public Pao(String imageUrl, String person, String action, String object) {
+    public Pao(String person, String action, String object, String imageUrl) {
         this.imageUrl = imageUrl;
         this.person = person;
         this.action = action;
