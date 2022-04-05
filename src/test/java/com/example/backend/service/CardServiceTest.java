@@ -35,24 +35,33 @@ class CardServiceTest {
     }
 
     @Test
-    void getShuffledDeck_decksAreNotEqual() {
-        //technically there is a slim chance that two shuffled decks are legally equal
-        List<CardResponse> deck1 = cut.shuffledDeck();
-        List<CardResponse> deck2 = cut.shuffledDeck();
-        assertNotEquals(deck1, deck2);
-    }
-
-    @Test
     void getDefaultDeck_defaultDecksAreEqual() {
         List<CardResponse> deck1 = cut.getDefaultDeck();
         List<CardResponse> deck2 = cut.getDefaultDeck();
-        boolean decksEqual = false;
+        boolean decksEqual = true;
+        //compare each item of the two decks. If any are different (using person to compare), the decks are not the same and the test should fail
         for(int i=0; i<deck1.size(); i++) {
-            if(deck1.indexOf(i) == deck2.indexOf(i)) {
-                decksEqual = true;
-            } else decksEqual = false;
+            if (deck1.get(i).getPerson() != deck2.get(i).getPerson()) {
+                decksEqual = false;
+                break;
+            }
         }
         assertTrue(decksEqual);
+    }
+
+    @Test
+    void getDefaultDeck_defaultDecksAreNotEqual() {
+        List<CardResponse> deck1 = cut.shuffledDeck();
+        List<CardResponse> deck2 = cut.shuffledDeck();
+        boolean decksEqual = true;
+        //compare each item of the two decks. If any are different, the decks are not the same and the test should succeed
+        for(int i=0; i<deck1.size(); i++) {
+            if (deck1.get(i).getPerson() != deck2.get(i).getPerson()) {
+                decksEqual = false;
+                break;
+            }
+        }
+        assertFalse(decksEqual);
     }
 
     //test that the deck holds 13 of each suit
