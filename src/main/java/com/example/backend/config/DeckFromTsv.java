@@ -112,7 +112,9 @@ public class DeckFromTsv {
     }
 
     // Helper Method
+    /* Removed because we moved away from tsv
     private static Pao makePao(String[] properties){
-        return new Pao(properties[3],properties[0],properties[1],properties[2]);
+        return new Pao(properties[0],properties[1],properties[2],properties[3]);
     }
+    */
 }
