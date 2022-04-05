@@ -31,8 +31,6 @@ public class CardService {
     //Get a card from the defaultDeck using an ID
     public CardResponse getCard(int id){
         List<CardResponse> deck = getDefaultDeck();
-        System.out.println(deck.toString());
-        System.out.println(deck.get(id).toString());
         return deck.get(id);
     }
 
