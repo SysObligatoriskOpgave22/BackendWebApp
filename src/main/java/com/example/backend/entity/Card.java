@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -31,5 +32,18 @@ public class Card {
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Card)) return false;
+        Card card = (Card) o;
+        return Objects.equals(getId(), card.getId()) && getRank() == card.getRank() && getSuit() == card.getSuit() && Objects.equals(getPaoCards(), card.getPaoCards());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getRank(), getSuit(), getPaoCards());
     }
 }

@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
@@ -42,4 +43,16 @@ public class CardResponse {
         return paoCards.stream().map(paoCard-> new CardResponse(paoCard,false)).collect(Collectors.toList());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CardResponse)) return false;
+        CardResponse that = (CardResponse) o;
+        return Objects.equals(getId(), that.getId()) && getRank() == that.getRank() && getSuit() == that.getSuit() && Objects.equals(getImageUrl(), that.getImageUrl()) && Objects.equals(getPerson(), that.getPerson()) && Objects.equals(getAction(), that.getAction()) && Objects.equals(getObject(), that.getObject());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getRank(), getSuit(), getImageUrl(), getPerson(), getAction(), getObject());
+    }
 }

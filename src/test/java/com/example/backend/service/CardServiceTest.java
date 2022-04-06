@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 class CardServiceTest {
@@ -46,7 +47,11 @@ class CardServiceTest {
                 break;
             }
         }
+
         assertTrue(decksEqual);
+
+        //Alternativt kan de to lister sammenlignes direkte, idet der er implementeret en equals-metode for CardResponse. -ATL
+        assertEquals(deck1,deck2);
     }
 
     @Test
@@ -62,6 +67,9 @@ class CardServiceTest {
             }
         }
         assertFalse(decksEqual);
+
+        //Alternativt kan de to lister sammenlignes direkte, idet der er implementeret en equals-metode for CardResponse. -ATL
+        assertNotEquals(deck1,deck2);
     }
 
     //test that the deck holds 13 of each suit
@@ -76,5 +84,15 @@ class CardServiceTest {
             }
         }
         assertEquals(13, suitCount);
+    }
+
+    //ATL
+    @Test
+    void getCard() {
+        CardResponse cardZero = cut.getCard(0);
+        CardResponse cardTen = cut.getCard(10);
+
+        assertEquals(cardZero.getPerson(), "Arnold Schwarzenegger");
+        assertEquals(cardTen.getPerson(), "Jesus Christ");
     }
 }
