@@ -32,41 +32,6 @@ class CardControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Autowired
-    CardRepository cardRepository;
-
-    @Autowired
-    DeckRepository deckRepository;
-
-    @Autowired
-    PaoRepository paoRepository;
-
-    @Autowired
-    PaoCardRepository paoCardRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-
-    static long cardOneId, cardTwoId;
-
-
-    @BeforeEach
-    void setUp() {
-        //cardOneId = cardRepository.save(new Card(Rank.ACE, Suit.CLUBS)).getId();
-        //cardTwoId = cardRepository.save(new Card(Rank.JACK, Suit.DIAMONDS)).getId();
-
-
-    }
-
-    @AfterEach
-    void tearDown() {
-        cardRepository.deleteAll();
-        deckRepository.deleteAll();
-        paoCardRepository.deleteAll();
-        paoRepository.deleteAll();
-    }
-
     @Test
     void getCards() throws Exception {
         String object = "$[?(@.object == '%s')]";
