@@ -3,6 +3,7 @@ package com.example.backend.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -29,5 +30,18 @@ public class Pao {
         this.person = person;
         this.action = action;
         this.object = object;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pao)) return false;
+        Pao pao = (Pao) o;
+        return Objects.equals(getId(), pao.getId()) && Objects.equals(getImageUrl(), pao.getImageUrl()) && Objects.equals(getPerson(), pao.getPerson()) && Objects.equals(getAction(), pao.getAction()) && Objects.equals(getObject(), pao.getObject()) && Objects.equals(getPaoCard(), pao.getPaoCard());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getImageUrl(), getPerson(), getAction(), getObject(), getPaoCard());
     }
 }
