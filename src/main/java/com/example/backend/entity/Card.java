@@ -19,9 +19,16 @@ public class Card {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // name is necessary, so we can put quotes around "rank" since MySQL considers "rank" to be a reserved keyword
+    // columnDefinition is necessary in order to use native MySQL enums instead of just strings
+    // MUST be in sync with the enum defined in Rank.java
+    @Column(name = "`rank`", columnDefinition = "ENUM('ACE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'TEN', 'JACK', 'QUEEN', 'KING')")
     @Enumerated(EnumType.STRING)
     private Rank rank;
 
+    // columnDefinition is necessary in order to use native MySQL enums instead of just strings
+    // MUST be in sync with the enum defined in Suit.java
+    @Column(columnDefinition = "ENUM('HEARTS', 'DIAMONDS', 'CLUBS', 'SPADES')")
     @Enumerated(EnumType.STRING)
     private Suit suit;
 

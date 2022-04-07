@@ -1,15 +1,21 @@
 package com.example.backend.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Deck {
 
     @Id
@@ -17,13 +23,6 @@ public class Deck {
     private String name;
     private String description;
 
-    public Deck() {
-
-    }
-    //Constructor
-    public Deck(Long id, String name, String description){
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+    @OneToMany
+    List<PaoCard> paoCards;
 }
