@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -19,10 +17,18 @@ import java.util.List;
 public class Deck {
 
     @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
     private String description;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     List<PaoCard> paoCards;
+
+    public Deck(String name, String description, List<PaoCard> paoCards) {
+        this.name = name;
+        this.description = description;
+        this.paoCards = paoCards;
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.backend.config;
 
-import com.example.backend.configuration.DefaultDeck;
+import com.example.backend.configuration.DefaultDeckConfig;
 import com.example.backend.entity.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 //ATL
-class DefaultDeckTest {
+class DefaultDeckConfigTest {
 
 
     @BeforeEach
@@ -27,7 +27,7 @@ class DefaultDeckTest {
 
     @Test
     void createDefaultPaos() {
-        List<Pao> paoList = DefaultDeck.createDefaultPaos();
+        List<Pao> paoList = DefaultDeckConfig.createDefaultPaos();
 
         assertEquals(52, paoList.size());
         assertInstanceOf(Pao.class, paoList.get(0));
@@ -46,7 +46,7 @@ class DefaultDeckTest {
         Card cardOne = new Card(Rank.ACE, Suit.HEARTS);
 
 
-        List<PaoCard> paoCardList = DefaultDeck.createDeck("src/main/resources/card-data.tsv");
+        List<PaoCard> paoCardList = DefaultDeckConfig.createDefaultDeck().getPaoCards();
 
         assertEquals(52, paoCardList.size());
         assertInstanceOf(PaoCard.class, paoCardList.get(0));

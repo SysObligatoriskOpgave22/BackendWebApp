@@ -1,18 +1,23 @@
 package com.example.backend.configuration;
 
 import com.example.backend.entity.*;
+import com.example.backend.repositories.CardRepository;
+import com.example.backend.repositories.DeckRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Utility class to create an initial deck from a TSV file
- * Reads a file of 52 lines, containing Person action object url separated by tabs and in that order.
- * The Order of the Suits should be HEARTS, SPADES, DIAMONDS and CLUBS
+ * Utility class to create the initial data for the DB.
+ * Contains some static methods that are deprecated, but implemented to not break functionality.
  */
-public class DefaultDeck {
+@Component
+public class DefaultDeckConfig {
 
     /**
-     * @return the default PAOs from the .tsv file
+     * @return the default PAOs
      */
     public static List<Pao> createDefaultPaos() {
         return List.of(
@@ -76,43 +81,58 @@ public class DefaultDeck {
     }
 
     /**
-     * Reads and parses a tsv-file into a list of PaoCards
-     * @param filePath location of the tsv-file to be read.
-     * @return List<PaoCard>
+     * Generates a list of cards
+     *
+     * @return a list of cards
      */
-    public static List<PaoCard> createDeck(String filePath){
-        List<Pao> paoList = createDefaultPaos();
+    private static List<Card> createCards() {
+        List<Card> cardList = new ArrayList<>();
+        String[] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"}; //Data is not in same order as ENUMS
+        Rank[] ranks = Rank.values();
+        for (String suit : suits) {
+            for (Rank rank : ranks) {
+                cardList.add(new Card(rank, Suit.valueOf(suit)));
+            }
+        }
+        return cardList;
+    }
+
+    /**
+     * Creates the default deck.
+     *
+     * @return Deck of PaoCards
+     */
+    private static Deck createDefaultDeck(List<Card> cardList, List<Pao> paoList) {
         List<PaoCard> paoDeck = new ArrayList<>(52);
 
 
         // Create PaoCards
-        String[] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"}; //Data is not in same order as ENUMS
-        Rank[] ranks = Rank.values();
-        int cardCount = 0;
-        for (String suit : suits) {
-            for (Rank rank : ranks) {
-                Card card = new Card(rank, Suit.valueOf(suit));
-                paoDeck.add(new PaoCard(card, paoList.get(cardCount)));
-                cardCount++;
-            }
+
+        for (int i = 0; i < 52; i++) {
+            paoDeck.add(new PaoCard(cardList.get(i), paoList.get(i)));
         }
 
-        return paoDeck;
+        //Create deck
+        return new Deck(
+                "Default Deck", "The initial deck that the " +
+                "application supports based on the google docs prototype", paoDeck
+        );
     }
 
     /**
-     * Reads and parses a tsv-file into a list of PaoCards.
-     * Uses the default hardcoded tsv file from resources.
-     * @return List<PaoCard>
+     * Creates a default deck from scratch, implemented to not break functionality.
+     * The use is discouraged and data should be read from the database instead.
+     *
+     * @return Deck with default values.
      */
-    public static List<PaoCard> createDefaultDeck(){
-        return createDeck("src/main/resources/card-data.tsv");
+    @Deprecated
+    public static Deck createDefaultDeck() {
+        return createDefaultDeck(createCards(), createDefaultPaos());
     }
 
-    // Helper Method
-    /* Removed because we moved away from tsv
-    private static Pao makePao(String[] properties){
-        return new Pao(properties[0],properties[1],properties[2],properties[3]);
+    @Autowired
+    DefaultDeckConfig(DeckRepository deckRepository, CardRepository cardRepository) {
+        deckRepository.save(createDefaultDeck(cardRepository.saveAll(createCards()), createDefaultPaos()));
     }
-    */
+
 }

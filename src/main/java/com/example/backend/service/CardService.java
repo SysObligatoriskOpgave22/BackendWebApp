@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.configuration.DefaultDeck;
+import com.example.backend.configuration.DefaultDeckConfig;
 
 import com.example.backend.dto.CardResponse;
 import com.example.backend.entity.PaoCard;
@@ -17,14 +17,14 @@ public class CardService {
 
     //Shuffles the defaultDeck
     public List<CardResponse> shuffledDeck(){
-       List<PaoCard> deckToShuffle = DefaultDeck.createDefaultDeck();
+       List<PaoCard> deckToShuffle = DefaultDeckConfig.createDefaultDeck().getPaoCards();
        Collections.shuffle(deckToShuffle);
        return CardResponse.CardFromEntity(deckToShuffle);
     }
 
     //Returns the defaultDeck in a list of CardResponses
     public List<CardResponse> getDefaultDeck(){
-        List<PaoCard> defaultDeck = DefaultDeck.createDefaultDeck();
+        List<PaoCard> defaultDeck = DefaultDeckConfig.createDefaultDeck().getPaoCards();
         return CardResponse.CardFromEntity(defaultDeck);
     }
 
