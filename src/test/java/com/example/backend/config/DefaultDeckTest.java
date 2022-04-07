@@ -1,14 +1,10 @@
 package com.example.backend.config;
 
+import com.example.backend.configuration.DefaultDeck;
 import com.example.backend.entity.*;
-import com.example.backend.repositories.CardRepository;
-import com.example.backend.repositories.DeckRepository;
-import com.example.backend.repositories.PaoCardRepository;
-import com.example.backend.repositories.PaoRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
@@ -17,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 //ATL
-class DeckFromTsvTest {
+class DefaultDeckTest {
 
 
     @BeforeEach
@@ -31,7 +27,7 @@ class DeckFromTsvTest {
 
     @Test
     void createDefaultPaos() {
-        List<Pao> paoList = DeckFromTsv.createDefaultPaos();
+        List<Pao> paoList = DefaultDeck.createDefaultPaos();
 
         assertEquals(52, paoList.size());
         assertInstanceOf(Pao.class, paoList.get(0));
@@ -50,7 +46,7 @@ class DeckFromTsvTest {
         Card cardOne = new Card(Rank.ACE, Suit.HEARTS);
 
 
-        List<PaoCard> paoCardList = DeckFromTsv.createDeck("src/main/resources/card-data.tsv");
+        List<PaoCard> paoCardList = DefaultDeck.createDeck("src/main/resources/card-data.tsv");
 
         assertEquals(52, paoCardList.size());
         assertInstanceOf(PaoCard.class, paoCardList.get(0));

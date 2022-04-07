@@ -1,9 +1,7 @@
-package com.example.backend.config;
+package com.example.backend.configuration;
 
 import com.example.backend.entity.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.*;
 
 /**
@@ -11,7 +9,7 @@ import java.util.*;
  * Reads a file of 52 lines, containing Person action object url separated by tabs and in that order.
  * The Order of the Suits should be HEARTS, SPADES, DIAMONDS and CLUBS
  */
-public class DeckFromTsv {
+public class DefaultDeck {
 
     /**
      * @return the default PAOs from the .tsv file
