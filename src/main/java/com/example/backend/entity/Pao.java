@@ -20,7 +20,7 @@ public class Pao {
     private String action;
     private String object;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToOne(mappedBy = "pao", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @ToString.Exclude
     private PaoCard paoCard;
 
