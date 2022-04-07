@@ -32,7 +32,7 @@ public class Card {
     @Enumerated(EnumType.STRING)
     private Suit suit;
 
-    @OneToMany(mappedBy = "card", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "card", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @ToString.Exclude
     private List<PaoCard> paoCards;
 
